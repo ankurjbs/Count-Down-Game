@@ -13,7 +13,9 @@ export default function TimerChallenge({ title, targetTime }) {
     
     setTimerStarted(true);
     timer.current = setTimeout(() => {
-      dialog.current.showModal();
+      // this showModel is built in js function of dialog element. Suppose more than one developer is working on it. and he changed to <dialog> to /<div> this will not work because this is the property of dialog element to show the modal. Show to solve this issue we use a custom funtion 'open' and intililze through callable function 'useImperativeHandle' hook in the result component
+      // dialog.current.showModal();
+      dialog.current.open(); // 'open' name is up to you
     }, targetTime * 1000);
   }
 
