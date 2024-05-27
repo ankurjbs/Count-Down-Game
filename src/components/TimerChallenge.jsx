@@ -4,13 +4,16 @@ import ResultModal from "./ResultModal";
 export default function TimerChallenge({ title, targetTime }) {
   // this timer is defined inside the component ,so it is component specific. So it will work totally independent for each instances of components
   const timer = useRef();
+  const dialog = useRef();
+
   const [timerStarted, setTimerStarted] = useState(false);
   const [timeExpired, setTimeExpired] = useState(false);
 
   function handleStart() {
+    
     setTimerStarted(true);
     timer.current = setTimeout(() => {
-      setTimeExpired(true);
+      dialog.current.showModal();
     }, targetTime * 1000);
   }
 
@@ -22,7 +25,8 @@ export default function TimerChallenge({ title, targetTime }) {
   }
   return (
     <>
-      {timeExpired && <ResultModal targetTime={targetTime} result="lost"/>}
+    {/* we can not send ref directlly to the component */}
+      <ResultModal ref={dialog} targetTime={targetTime} result="lost"/>
       <section className="challenge">
         <h2>{title}</h2>
         {timeExpired && <p>You Lost</p>}
