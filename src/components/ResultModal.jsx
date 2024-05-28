@@ -1,6 +1,6 @@
 import { forwardRef, useImperativeHandle ,useRef} from "react";
 // we can't use ref props directly to the function. if we want to pass one ref to another we used to special type of hooks forwardRef
-const ResultModal =  forwardRef(function ResultModal({result,targetTime,remainingTime},ref){
+const ResultModal =  forwardRef(function ResultModal({onReset,targetTime,remainingTime},ref){
     const dialog = useRef();
     const userLost = remainingTime <=0;
     const formatRemainingTime = (remainingTime/1000).toFixed(2);
@@ -19,7 +19,7 @@ const ResultModal =  forwardRef(function ResultModal({result,targetTime,remainin
        {userLost && <h2>User Lost</h2>} 
         <p>The Target Timer was <strong>{targetTime} seconds.</strong></p>
         <p>You stopped the timer with <strong>{formatRemainingTime} seconds left.</strong></p>
-        <form method="dialog">
+        <form method="dialog" onSubmit={onResets}>
             <button>Close</button>
         </form>
     </dialog>;
