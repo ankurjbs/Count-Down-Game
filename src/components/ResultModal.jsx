@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle ,useRef} from "react";
 import { createPortal } from "react-dom"; // for ineration with DOM. Purpose of this to render the ResultComponenet to another place in DOM
 
-// since modal(ResultModal) is nested somewhere in the dom because I am using this in timechallenge jss. But technicall this should be reside on top of the element . purpose to styling or for something else so we use portals
+// since modal(ResultModal) is nested somewhere in the dom because I am using this in timechallenge jss. But technicall this should be reside on top of the element . purpose to styling or for something else so we use portals. In one line Portal is used to put a JSX component to other place instead of root
 
 
 // we can't use ref props directly to the function. if we want to pass one ref to another we used to special type of hooks forwardRef
